@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMB — Luxury Perfumes, Glasses & Watches</title>
+    <meta name="description" content="Discover luxury perfumes, designer glasses, and premium watches at DMB. Elegant online shopping with cash on delivery and store pickup.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        :root {
+            --bg: #ffffff; --bg-alt: #fafaf9; --bg-card: #ffffff; --text: #1a1a1a; --text-secondary: #6b6b6b;
+            --text-light: #999999; --border: #e8e8e6; --border-light: #f2f2f0; --accent: #c9a96e;
+            --accent-dark: #a8874a; --accent-light: #f5efe4; --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06); --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+            --radius-sm: 8px; --radius: 14px; --radius-lg: 20px; --radius-xl: 28px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1); --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif; --nav-height: 64px; --bottom-nav-height: 60px;
+            --max-width: 1280px; --success: #2d8a4e; --danger: #c0392b; --warning: #e67e22; --info: #2980b9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d1cf; border-radius: 10px; }
+        h1, h2, h3, h4, .font-display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.02em; }
+        h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.15; font-weight: 600; }
+        h2 { font-size: clamp(1.5rem, 2.6vw, 2.2rem); line-height: 1.2; font-weight: 500; }
+        h3 { font-size: clamp(1rem, 1.8vw, 1.3rem); line-height: 1.3; }
+
+        .top-nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); height: var(--nav-height); display: flex; align-items: center; padding: 0 clamp(16px, 3vw, 40px); gap: 20px; }
+        .nav-brand { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text); text-decoration: none; cursor: pointer; white-space: nowrap; user-select: none; }
+        .nav-brand span { color: var(--accent); font-weight: 700; }
+        .nav-links { display: flex; gap: 6px; margin-left: auto; align-items: center; flex-wrap: nowrap; }
+        .nav-links a, .nav-links button { font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; padding: 8px 14px; border-radius: 22px; cursor: pointer; border: none; background: transparent; transition: var(--transition); white-space: nowrap; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 5px; }
+        .nav-links a:hover, .nav-links button:hover { color: var(--text); background: var(--bg-alt); }
+        .nav-links a.active { color: var(--text); background: var(--bg-alt); font-weight: 600; }
+        .nav-cart-btn { position: relative; padding: 8px 12px !important; }
+        .cart-badge { position: absolute; top: 0; right: 0; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1; }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--text); }
+
+        .mobile-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); z-index: 99; flex-direction: column; padding: 10px 18px; gap: 4px; box-shadow: var(--shadow); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a, .mobile-menu button { display: flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 22px; text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.88rem; background: none; border: none; cursor: pointer; text-align: left; transition: var(--transition); font-family: var(--font-body); width: 100%; }
+        .mobile-menu a:hover, .mobile-menu button:hover { background: var(--bg-alt); }
+
+        .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--border); height: var(--bottom-nav-height); padding: 0 6px; justify-content: space-around; align-items: center; }
+        .bottom-nav button { display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: none; cursor: pointer; color: var(--text-light); font-size: 0.62rem; font-weight: 500; padding: 5px 8px; border-radius: 10px; transition: var(--transition); font-family: var(--font-body); letter-spacing: 0.02em; min-width: 44px; }
+        .bottom-nav button.active { color: var(--accent); }
+        .bottom-nav button .icon { width: 22px; height: 22px; }
+        .bottom-nav .cart-badge-mobile { position: relative; }
+        .bottom-nav .cart-badge-mobile .badge-dot { position: absolute; top: -6px; right: -8px; width: 16px; height: 16px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 0.58rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+        .main-content { max-width: var(--max-width); margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px); min-height: 60vh; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        .section-header { text-align: center; margin: 44px 0 28px; }
+        .section-header h2 { margin-bottom: 4px; }
+        .section-header p { color: var(--text-secondary); font-size: 0.92rem; max-width: 480px; margin: 0 auto; }
+
+        .hero { display: flex; align-items: center; gap: 36px; padding: 36px 0 44px; min-height: 380px; flex-wrap: wrap; }
+        .hero-text { flex: 1; min-width: 270px; }
+        .hero-text h1 { margin-bottom: 12px; }
+        .hero-text p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 22px; max-width: 420px; line-height: 1.7; }
+        .hero-image { flex: 1; min-width: 270px; display: flex; justify-content: center; align-items: center; }
+        .hero-image .img-placeholder { width: 100%; max-width: 400px; aspect-ratio: 1/1; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); }
+        .hero-image .img-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+
+        .btn { display: inline-flex; align-items: center; gap: 7px; padding: 11px 26px; border-radius: 26px; font-family: var(--font-body); font-size: 0.88rem; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); letter-spacing: 0.02em; text-decoration: none; white-space: nowrap; }
+        .btn-primary { background: var(--text); color: #fff; }
+        .btn-primary:hover { background: #333; transform: translateY(-1px); box-shadow: var(--shadow); }
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
+        .btn-outline:hover { border-color: var(--text); background: var(--bg-alt); }
+        .btn-accent { background: var(--accent); color: #fff; }
+        .btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: var(--shadow); }
+        .btn-sm { padding: 7px 16px; font-size: 0.78rem; border-radius: 18px; }
+        .btn-xs { padding: 4px 10px; font-size: 0.7rem; border-radius: 14px; }
+        .btn-danger { background: #fff; border: 1.5px solid #e74c3c; color: #e74c3c; }
+        .btn-danger:hover { background: #fef5f5; }
+        .btn-success { background: var(--success); color: #fff; }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fiT, minmax(220px, 1fr)); gap: 18px; margin: 20px 0; }
+        .product-card { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border-light); overflow: hidden; transition: var(--transition); cursor: pointer; position: relative; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); }
+        .product-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: #e0ded8; }
+        .product-card .img-wrap { aspect-ratio: 1/1; background: #fafaf8; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .product-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .product-card .img-wrap .wishlist-icon { position: absolute; top: 10px; right: 10px; background: #fff; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--border); transition: var(--transition); z-index: 2; box-shadow: var(--shadow-sm); color: #999; }
+        .product-card .img-wrap .wishlist-icon.liked { color: #e74c3c; border-color: #fce4e4; background: #fff5f5; }
+        .product-card .img-wrap .badge { position: absolute; top: 10px; left: 10px; background: var(--text); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+        .product-card .img-wrap .badge.new { background: var(--accent); }
+        .product-card .img-wrap .badge.bestseller { background: #1a1a1a; }
+        .product-card .info { padding: 13px 15px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+        .product-card .info .name { font-weight: 600; font-size: 0.92rem; line-height: 1.3; }
+        .product-card .info .category-label { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+        .product-card .info .price-row { display: flex; align-items: center; gap: 8px; margin-top: auto; }
+        .product-card .info .price { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+        .product-card .info .discount-price { font-size: 0.85rem; color: var(--text-light); text-decoration: line-through; }
+        .product-card .info .stock { font-size: 0.72rem; }
+        .stock-in { color: var(--success); } .stock-low { color: var(--warning); } .stock-out { color: var(--danger); }
+        .product-card .info .add-cart-btn { margin-top: 8px; width: 100%; }
+
+        .category-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin: 18px 0;justify-content: center; }
+        .category-card { aspect-ratio: 1/1; border-radius: var(--radius-lg); background: var(--bg-alt); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); border: 1px solid var(--border-light); font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; gap: 8px; text-align: center; box-shadow: var(--shadow-sm); }
+        .category-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: #ddd; }
+        .category-card .cat-icon { width: 44px; height: 44px; color: var(--accent); }
+
+        .branches-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 18px 0;justify-content: center; }
+        .branch-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 18px; text-align: center; transition: var(--transition); box-shadow: var(--shadow-sm); }
+        .branch-card:hover { box-shadow: var(--shadow); }
+        .branch-card .branch-icon { color: var(--accent); margin-bottom: 6px; }
+        .branch-card h4 { font-weight: 600; margin-bottom: 2px; font-family: var(--font-body); }
+        .branch-card p { font-size: 0.82rem; color: var(--text-secondary); }
+
+        .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 200; display: none; opacity: 0; transition: opacity 0.3s ease; }
+        .cart-overlay.open { display: block; opacity: 1; }
+        .cart-drawer { position: fixed; top: 0; right: 0; width: 100%; max-width: 420px; height: 100vh; background: #fff; z-index: 201; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; box-shadow: var(--shadow-lg); }
+        .cart-drawer.open { transform: translateX(0); }
+        .cart-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 1.05rem; }
+        .cart-drawer-header button { background: none; border: none; cursor: pointer; color: var(--text); padding: 4px 8px; border-radius: 50%; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+        .cart-item { display: flex; gap: 10px; align-items: center; padding: 10px; border-radius: var(--radius-sm); background: var(--bg-alt); }
+        .cart-item .ci-img { width: 56px; height: 56px; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; }
+        .cart-item .ci-img img { width: 100%; height: 100%; object-fit: cover; }
+        .cart-item .ci-info { flex: 1; min-width: 0; }
+        .cart-item .ci-name { font-weight: 600; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cart-item .ci-price { font-size: 0.8rem; color: var(--text-secondary); }
+        .cart-item .ci-qty { display: flex; align-items: center; gap: 5px; margin-top: 3px; }
+        .cart-item .ci-qty button { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
+        .cart-item .ci-qty span { font-weight: 600; min-width: 18px; text-align: center; font-size: 0.85rem; }
+        .cart-item .ci-remove { background: none; border: none; color: #c0392b; cursor: pointer; padding: 4px; }
+        .cart-empty { text-align: center; padding: 40px 18px; color: var(--text-light); font-size: 0.9rem; }
+        .cart-footer { padding: 14px 18px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));}
+        .cart-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.05rem; }
+
+        .checkout-form { max-width: 580px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+        .checkout-form label { font-weight: 600; font-size: 0.8rem; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-secondary); }
+        .checkout-form input, .checkout-form select, .checkout-form textarea { width: 100%; padding: 11px 15px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.9rem; transition: var(--transition); background: #fff; color: var(--text); }
+        .checkout-form input:focus, .checkout-form select:focus, .checkout-form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+        .checkout-form textarea { min-height: 70px; resize: vertical; }
+        .checkout-form .field-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .checkout-form .field-group>div { flex: 1; min-width: 140px; }
+        .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .radio-option { flex: 1; min-width: 130px; padding: 13px; border: 2px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; text-align: center; transition: var(--transition); font-weight: 500; background: #fff; font-size: 0.85rem; }
+        .radio-option.selected { border-color: var(--accent); background: var(--accent-light); font-weight: 600; }
+        .radio-option input { display: none; }
+        .address-section { transition: all 0.3s ease; overflow: hidden; }
+        .address-section.disabled { opacity: 0.4; pointer-events: none; max-height: 0; margin: 0; padding: 0; border: none; }
+
+        .toast-container { position: fixed; bottom: 80px; right: 18px; z-index: 300; display: flex; flex-direction: column; gap: 6px; }
+        .toast { padding: 11px 18px; border-radius: 24px; background: #1a1a1a; color: #fff; font-size: 0.82rem; font-weight: 500; animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.5s forwards; box-shadow: var(--shadow); max-width: 320px; text-align: center; }
+        @keyframes slideIn { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { to { opacity: 0; transform: translateY(-8px); } }
+
+        .whatsapp-float { position: fixed; bottom: 85px; right: 18px; z-index: 150; width: 48px; height: 48px; border-radius: 50%; background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 14px rgba(37,211,102,0.35); transition: var(--transition); border: none; text-decoration: none; }
+        .whatsapp-float:hover { transform: scale(1.06); box-shadow: 0 6px 20px rgba(37,211,102,0.45); }
+        .whatsapp-float ion-icon { font-size: 24px; }
+
+        .search-bar-wrap { display: flex; gap: 8px; margin: 14px 0 18px; flex-wrap: wrap; }
+        .search-bar-wrap input { flex: 1; min-width: 180px; padding: 9px 16px; border: 1.5px solid var(--border); border-radius: 24px; font-family: var(--font-body); font-size: 0.88rem; transition: var(--transition); }
+        .search-bar-wrap input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+        .search-bar-wrap select { padding: 9px 12px; border-radius: 24px; border: 1.5px solid var(--border); font-family: var(--font-body); font-size: 0.82rem; background: #fff; cursor: pointer; }
+
+        .admin-table-wrap { overflow-x: auto; margin: 12px 0; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 600px; }
+        .admin-table th, .admin-table td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+        .admin-table th { font-weight: 600; background: var(--bg-alt); position: sticky; top: 0; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
+        .status-badge { display: inline-block; padding: 4px 9px; border-radius: 10px; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+        .status-pending { background: #fef9e7; color: #b7950b; }
+        .status-confirmed { background: #e8f4fd; color: #21618c; }
+        .status-ready { background: #eaf7ee; color: #1e7e34; }
+        .status-outdelivery { background: #fef3e2; color: #c05600; }
+        .status-delivered { background: #eaf7ee; color: #145a32; }
+        .status-cancelled { background: #fdedec; color: #922b21; }
+
+        .site-footer { border-top: 1px solid var(--border); padding: 28px 0; margin-top: 44px; text-align: center; color: var(--text-light); font-size: 0.82rem; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; }
+        .site-footer a { color: var(--text-secondary); text-decoration: none; transition: var(--transition); }
+        .site-footer a:hover { color: var(--text); }
+        .social-links { display: flex; gap: 12px; align-items: center; }
+        .social-links ion-icon { font-size: 20px; color: var(--text-light); cursor: pointer; transition: var(--transition); }
+        .social-links ion-icon:hover { color: var(--text); }
+        .social-links i { width: 18px; height: 18px; color: var(--text-light); cursor: pointer; transition: var(--transition); }
+        .social-links i:hover { color: var(--text); }
+
+        @media (max-width: 768px) {
+            .nav-links .hide-mobile { display: none; }
+            .hamburger { display: block; }
+            .bottom-nav { display: flex; }
+            body { padding-bottom: var(--bottom-nav-height); }
+            .hero { flex-direction: column-reverse; padding: 16px 0 24px; gap: 16px; min-height: auto; }
+            .hero-image .img-placeholder { max-width: 260px; }
+            .product-grid { grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; }
+            .product-card .info { padding: 9px 11px; }
+            .product-card .info .name { font-size: 0.78rem; }
+            .product-card .info .price { font-size: 0.85rem; }
+            .cart-drawer { max-width: 100%; }
+            .whatsapp-float { bottom: 70px; right: 12px; width: 42px; height: 42px; }
+            .whatsapp-float ion-icon { font-size: 20px; }
+            .checkout-form { max-width: 100%; }
+            .admin-table { font-size: 0.7rem; }
+            .admin-table th, .admin-table td { padding: 5px 7px; }
+        }
+        .review-stars { color: #f0c040; letter-spacing: 2px; }
+        .review-item { padding: 10px; border-bottom: 1px solid var(--border-light); }
+        .review-item .reviewer { font-weight: 600; font-size: 0.82rem; }
+        .review-item .comment { font-size: 0.82rem; color: var(--text-secondary); margin-top: 2px; }
+        .icon-inline { width: 18px; height: 18px; vertical-align: middle; }
+        .icon-lg { width: 30px; height: 30px; }
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+        .gap-10 { gap: 10px; }
+        .flex-wrap { display: flex; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+    <nav class="top-nav" id="topNav">
+        <div class="nav-brand" onclick="navigate('home')"><span>.</span>DMB</div>
+        <!-- <button class="hamburger" id="hamburgerBtn" aria-label="Menu" onclick="toggleMobileMenu()"><i data-lucide="menu"></i></button> -->
+        <div class="nav-links" id="navLinks">
+            <a href="#home" class="hide-mobile active" data-page="home" onclick="navigate('home')"><i data-lucide="home" class="icon-inline"></i> Home</a>
+            <a href="#perfumes" class="hide-mobile" data-page="perfumes" onclick="navigate('perfumes')"><i data-lucide="sparkles" class="icon-inline"></i> Perfumes</a>
+            <a href="#glasses" class="hide-mobile" data-page="glasses" onclick="navigate('glasses')"><i data-lucide="glasses" class="icon-inline"></i> Glasses</a>
+            <a href="#watches" class="hide-mobile" data-page="watches" onclick="navigate('watches')"><i data-lucide="watch" class="icon-inline"></i> Watches</a>
+            <button class="hide-mobile" onclick="navigate('wishlist')"><i data-lucide="heart"></i></button>
+            <button class="nav-cart-btn" onclick="toggleCart()"><i data-lucide="shopping-cart"></i><span class="cart-badge" id="cartBadgeTop">0</span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" onclick="navigate('home');toggleMobileMenu()"><i data-lucide="home" class="icon-inline"></i> Home</a>
+        <a href="#perfumes" onclick="navigate('perfumes');toggleMobileMenu()"><i data-lucide="sparkles" class="icon-inline"></i> Perfumes</a>
+        <a href="#glasses" onclick="navigate('glasses');toggleMobileMenu()"><i data-lucide="glasses" class="icon-inline"></i> Glasses</a>
+        <a href="#watches" onclick="navigate('watches');toggleMobileMenu()"><i data-lucide="watch" class="icon-inline"></i> Watches</a>
+        <a href="#wishlist" onclick="navigate('wishlist');toggleMobileMenu()"><i data-lucide="heart" class="icon-inline"></i> Wishlist</a>
+        <a href="#checkout" onclick="navigate('checkout');toggleMobileMenu()"><i data-lucide="package" class="icon-inline"></i> Checkout</a>
+        <button onclick="navigate('admin');toggleMobileMenu()"><i data-lucide="settings" class="icon-inline"></i> Admin</button>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div id="loadingSpinner" style="display:flex;justify-content:center;align-items:center;min-height:50vh;">
+            <div style="text-align:center;">
+                <div style="width:40px;height:40px;border:4px solid var(--border);border-top:4px solid var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;"></div>
+                <p style="color:var(--text-secondary);">Loading luxury collections...</p>
+            </div>
+        </div>
+
+        <div class="page-section active" id="page-home">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>Discover Your<br>Signature Scent</h1>
+                    <p>Curated luxury perfumes, designer glasses, and premium watches. Elevate your presence with timeless elegance.</p>
+                    <div class="flex-wrap gap-10">
+                        <button class="btn btn-primary" onclick="navigate('perfumes')"><i data-lucide="arrow-right" class="icon-inline"></i> Shop Perfumes</button>
+                        <button class="btn btn-outline" onclick="navigate('watches')">Explore Watches</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="img-placeholder"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&h=600&fit=crop" alt="Luxury perfume"></div>
+                </div>
+            </div>
+            <div class="section-header"><h2>Shop by Category</h2><p>Explore our curated collections</p></div>
+            <div class="category-cards">
+                <div class="category-card" onclick="navigate('perfumes')"><i data-lucide="sparkles" class="cat-icon"></i>Perfumes</div>
+                <div class="category-card" onclick="navigate('glasses')"><i data-lucide="glasses" class="cat-icon"></i>Glasses</div>
+                <div class="category-card" onclick="navigate('watches')"><i data-lucide="watch" class="cat-icon"></i>Watches</div>
+            </div>
+            <div class="section-header"><h2>Featured Products</h2><p>Our most beloved selections</p></div>
+            <div class="product-grid" id="featuredProducts"></div>
+            <div class="section-header"><h2>Our Stores</h2><p>Visit us or pick up your order</p></div>
+            <div class="branches-grid" id="branchesGrid"></div>
+        </div>
+
+        <div class="page-section" id="page-perfumes"></div>
+        <div class="page-section" id="page-glasses"></div>
+        <div class="page-section" id="page-watches"></div>
+        <div class="page-section" id="page-product-detail"></div>
+        <div class="page-section" id="page-wishlist"></div>
+        <div class="page-section" id="page-checkout"></div>
+        <div class="page-section" id="page-confirmation"></div>
+        <div class="page-section" id="page-admin"></div>
+    </div>
+
+    <footer class="site-footer">
+        <span>© 2026 DMB. All rights reserved.</span>
+        <span>|</span>
+        <a href="#home" onclick="navigate('home')">Home</a>
+        <a href="#perfumes" onclick="navigate('perfumes')">Perfumes</a>
+        <a href="#glasses" onclick="navigate('glasses')">Glasses</a>
+        <a href="#watches" onclick="navigate('watches')">Watches</a>
+        <span>|</span>
+        <div class="social-links">
+            <a href="https://www.instagram.com/dmbcosmetique/"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.facebook.com/dmb.fragrance"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href=""><ion-icon name="pin-outline"></ion-icon></a>
+        </div>
+        <span>|</span>
+        <span><i data-lucide="phone" class="icon-inline"></i> 0671 95 15 00</span>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <span><i data-lucide="shopping-cart" class="icon-inline"></i> Your Cart <span id="cartItemCount">(0)</span></span>
+            <button onclick="toggleCart()"><i data-lucide="x"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-total"><span>Total:</span><span id="cartTotal">0.00 DA</span></div>
+            <button class="btn btn-primary" style="width:100%;" onclick="toggleCart();navigate('checkout')">
+                <i data-lucide="arrow-right" class="icon-inline"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <a class="whatsapp-float" href="https://wa.me/213671951500" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a>
+
+    <nav class="bottom-nav" id="bottomNav">
+        <button data-page="home" onclick="navigate('home')" class="active"><i data-lucide="home" class="icon"></i>Home</button>
+        <button data-page="perfumes" onclick="navigate('perfumes')"><i data-lucide="sparkles" class="icon"></i>Shop</button>
+        <button class="cart-badge-mobile" onclick="toggleCart()"><i data-lucide="shopping-cart" class="icon"></i>Cart<span class="badge-dot" id="cartBadgeMobile" style="display:none;">0</span></button>
+        <button data-page="wishlist" onclick="navigate('wishlist')"><i data-lucide="heart" class="icon"></i>Wishlist</button>
+        <button data-page="checkout" onclick="navigate('checkout')"><i data-lucide="package" class="icon"></i>Order</button>
+    </nav>
+
+    <script>
+        // ╔══════════════════════════════════════════╗
+        // ║  DMB – Google Sheets API (No CORS)    ║
+        // ╚══════════════════════════════════════════╝
+
+        const API_KEY = 'AIzaSyDzj_Ms3-mO_UI7of89wuiF0RGZGg7HZ-s'; // Replace with your actual API key
+        const PRODUCTS_SHEET_ID = '1uadLc20B5q_GZu4YiB9Zuq10QVWz5r-yWV0nb8lssPA';
+        const CATEGORIES_SHEET_ID = '1HmpDwfwayhlXxPgCCnnVpthK15mN91DbDg_WSPQbcUU';
+        const BRANCHES_SHEET_ID = '1bvu85IIKLj1XUUOdI6MztappobUOnV77Dn8v8RoFsNU';
+        const PRODUCTS_SHEET_NAME = 'Products';
+        const CATEGORIES_SHEET_NAME = 'Categories';
+        const BRANCHES_SHEET_NAME = 'Branches';
+        const ORDER_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzAqToGNKACRVYnsnqmq7S9aFdSJM4fwECTjiJBJqs0O3V_Q8xjKzHnpYuTIMInUxfN/exec';
+
+        let products = [], categories = [], branches = [];
+        const STATE = {
+            currentPage: 'home',
+            cart: JSON.parse(localStorage.getItem('dmb_cart') || '[]'),
+            wishlist: JSON.parse(localStorage.getItem('dmb_wishlist') || '[]'),
+            orders: JSON.parse(localStorage.getItem('dmb_orders') || '[]'),
+            customers: JSON.parse(localStorage.getItem('dmb_customers') || '[]'),
+            adminView: 'orders',
+        };
+
+        function saveState() {
+            localStorage.setItem('dmb_cart', JSON.stringify(STATE.cart));
+            localStorage.setItem('dmb_wishlist', JSON.stringify(STATE.wishlist));
+            localStorage.setItem('dmb_orders', JSON.stringify(STATE.orders));
+            localStorage.setItem('dmb_customers', JSON.stringify(STATE.customers));
+        }
+        function showToast(msg) {
+            const c = document.getElementById('toastContainer');
+            const t = document.createElement('div');
+            t.className = 'toast'; t.textContent = msg;
+            c.appendChild(t);
+            setTimeout(() => t.remove(), 2800);
+        }
+
+        async function fetchSheetData(spreadsheetId, sheetName) {
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${API_KEY}`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Failed to fetch ${sheetName}`);
+            const data = await response.json();
+            const rows = data.values;
+            if (!rows || rows.length === 0) return [];
+            const headers = rows[0];
+            return rows.slice(1).map(row => {
+                const obj = {};
+                headers.forEach((header, i) => {
+                    const val = row[i] || '';
+                    if (!isNaN(val) && val !== '') obj[header] = Number(val);
+                    else obj[header] = val;
+                });
+                return obj;
+            });
+        }
+
+        async function loadData() {
+            try {
+                products = await fetchSheetData(PRODUCTS_SHEET_ID, PRODUCTS_SHEET_NAME);
+                categories = await fetchSheetData(CATEGORIES_SHEET_ID, CATEGORIES_SHEET_NAME);
+                branches = await fetchSheetData(BRANCHES_SHEET_ID, BRANCHES_SHEET_NAME);
+                document.getElementById('loadingSpinner').style.display = 'none';
+                navigate('home');
+            } catch (error) {
+                console.error('Failed to load sheet data:', error);
+                alert('Could not load store data. Please check your API key and sheet setup.');
+                products = []; categories = []; branches = [];
+                document.getElementById('loadingSpinner').style.display = 'none';
+                navigate('home');
+            }
+        }
+
+        function getProductImage(productId, variant = 0) {
+            return `https://picsum.photos/seed/${productId}v${variant}/400/400`;
+        }
+
+        function isTrue(value) {
+            if (typeof value === 'boolean') return value;
+            if (typeof value === 'number') return value === 1;
+            if (typeof value === 'string') return value.toLowerCase() === 'true';
+            return false;
+        }
+
+        function navigate(page, productId = null) {
+            STATE.currentPage = page;
+            window.location.hash = page + (productId ? '?id=' + productId : '');
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById('page-' + page);
+            if (target) target.classList.add('active');
+            document.querySelectorAll('.nav-links a[data-page]').forEach(a => a.classList.remove('active'));
+            const nl = document.querySelector(`.nav-links a[data-page="${page}"]`);
+            if (nl) nl.classList.add('active');
+            document.querySelectorAll('.bottom-nav button[data-page]').forEach(b => b.classList.remove('active'));
+            const bb = document.querySelector(`.bottom-nav button[data-page="${page}"]`);
+            if (bb) bb.classList.add('active');
+            document.getElementById('mobileMenu').classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderPage(page, productId);
+            updateCartBadge();
+            lucide.createIcons();
+        }
+
+        function renderPage(page, productId = null) {
+            switch (page) {
+                case 'home': renderHome(); break;
+                case 'perfumes': case 'glasses': case 'watches': renderCategoryPage(page); break;
+                case 'product-detail': if (productId) renderProductDetail(parseInt(productId)); break;
+                case 'wishlist': renderWishlist(); break;
+                case 'checkout': renderCheckout(); break;
+                case 'confirmation': renderConfirmation(); break;
+                case 'admin': renderAdmin(); break;
+                default: renderHome();
+            }
+        }
+
+        function productCardHTML(p) {
+            const isLiked = STATE.wishlist.includes(p.id);
+            const stockClass = p.stock > 10 ? 'stock-in' : p.stock > 0 ? 'stock-low' : 'stock-out';
+            const stockText = p.stock > 10 ? 'In Stock' : p.stock > 0 ? `Only ${p.stock} left` : 'Out of Stock';
+            const disabledAttr = p.stock == 0 ? 'disabled' : '';
+            const disabledStyle = p.stock == 0 ? 'opacity:0.5;cursor:not-allowed;' : '';
+            const isNew = isTrue(p.isNew);
+            const isBestseller = isTrue(p.bestseller);
+            const badgeHTML = isNew ? '<span class="badge new">New</span>' : (isBestseller ? '<span class="badge bestseller">Best Seller</span>' : '');
+            const displayPrice = p.discountPrice || p.price;
+            const originalPrice = p.discountPrice ? `<span class="discount-price">${Number(p.price).toLocaleString()} DA</span>` : '';
+            return `
+            <div class="product-card" data-product-id="${p.id}" onclick="navigate('product-detail','${p.id}')">
+              <div class="img-wrap">
+                <img src="${getProductImage(p.photos?p.photos:p.id)}" alt="${p.name}" loading="lazy">
+                ${badgeHTML}
+                <span class="wishlist-icon ${isLiked?'liked':''}" onclick="event.stopPropagation();toggleWishlist(${p.id})">
+                  <i data-lucide="heart"></i>
+                </span>
+              </div>
+              <div class="info">
+                <span class="category-label">${p.category}</span>
+                <span class="name">${p.name}</span>
+                <div class="price-row">
+                  <span class="price">${Number(displayPrice).toLocaleString()} DA</span>
+                  ${originalPrice}
+                </div>
+                <span class="stock ${stockClass}">${stockText}</span>
+                <button class="btn btn-accent btn-sm add-cart-btn" ${disabledAttr} style="${disabledStyle}" onclick="event.stopPropagation();addToCart(${p.id})">
+                  ${p.stock == 0 ? 'Sold Out' : 'Add to Cart'}
+                </button>
+              </div>
+            </div>`;
+        }
+
+        function renderHome() {
+            const featured = products.filter(p => isTrue(p.featured) && String(p.status).toLowerCase() === 'active').slice(0, 6);
+            document.getElementById('featuredProducts').innerHTML = featured.length ? featured.map(p => productCardHTML(p)).join('') : '<p class="text-center" style="grid-column: 1/-1; color: var(--text-light);">No featured products yet.</p>';
+            document.getElementById('branchesGrid').innerHTML = branches.filter(b => String(b.status).toLowerCase() === 'active').map(b => `
+            <div class="branch-card">
+              <i data-lucide="map-pin" class="branch-icon icon-lg"></i>
+              <h4>${b.name}</h4>
+              <p>${b.address}</p>
+              <p style="font-size:0.78rem;"><i data-lucide="phone" class="icon-inline"></i> ${b.phone}</p>
+              <p style="font-size:0.73rem;color:var(--text-light);"><i data-lucide="clock" class="icon-inline"></i> ${b.workHours}</p>
+            </div>`).join('');
+            lucide.createIcons();
+        }
+
+        function renderCategoryPage(category) {
+            const pageEl = document.getElementById('page-' + category);
+            const catData = categories.find(c => c.slug === category);
+            const catProducts = products.filter(p => p.category === category && String(p.status).toLowerCase() === 'active');
+            pageEl.innerHTML = `
+            <div class="section-header">
+              <h2><i data-lucide="${catData?.image||'tag'}" class="icon-inline"></i> ${catData?.name||category}</h2>
+              <p>Browse our ${catData?.name||category} collection</p>
+            </div>
+            <div class="search-bar-wrap">
+              <input type="text" placeholder="Search..." id="searchInput-${category}" oninput="filterProducts('${category}')">
+              <select id="sortSelect-${category}" onchange="filterProducts('${category}')">
+                <option value="default">Sort: Default</option>
+                <option value="price-asc">Price: Low→High</option>
+                <option value="price-desc">Price: High→Low</option>
+                <option value="name-asc">Name: A-Z</option>
+                <option value="rating-desc">Top Rated</option>
+                <option value="newest">Newest</option>
+              </select>
+              <select id="stockFilter-${category}" onchange="filterProducts('${category}')">
+                <option value="all">All Stock</option>
+                <option value="in-stock">In Stock</option>
+              </select>
+            </div>
+            <div class="product-grid" id="productGrid-${category}">${catProducts.map(p=>productCardHTML(p)).join('')}</div>
+            <p id="noResults-${category}" style="display:none;text-align:center;color:var(--text-light);padding:40px;">No products found.</p>`;
+            lucide.createIcons();
+        }
+
+        function filterProducts(category) {
+            const searchTerm = (document.getElementById('searchInput-' + category)?.value || '').toLowerCase();
+            const sortVal = document.getElementById('sortSelect-' + category)?.value || 'default';
+            const stockFilter = document.getElementById('stockFilter-' + category)?.value || 'all';
+            let filtered = products.filter(p => p.category === category && String(p.status).toLowerCase() === 'active');
+            if (searchTerm) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm));
+            if (stockFilter === 'in-stock') filtered = filtered.filter(p => p.stock > 0);
+            if (sortVal === 'price-asc') filtered.sort((a,b) => (Number(a.discountPrice)||Number(a.price)) - (Number(b.discountPrice)||Number(b.price)));
+            if (sortVal === 'price-desc') filtered.sort((a,b) => (Number(b.discountPrice)||Number(b.price)) - (Number(a.discountPrice)||Number(a.price)));
+            if (sortVal === 'name-asc') filtered.sort((a,b) => a.name.localeCompare(b.name));
+            if (sortVal === 'rating-desc') filtered.sort((a,b) => Number(b.rating) - Number(a.rating));
+            if (sortVal === 'newest') filtered.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+            const grid = document.getElementById('productGrid-' + category);
+            const noRes = document.getElementById('noResults-' + category);
+            if (grid) grid.innerHTML = filtered.map(p => productCardHTML(p)).join('');
+            if (noRes) noRes.style.display = filtered.length === 0 ? 'block' : 'none';
+            lucide.createIcons();
+        }
+
+        function changeMainImage(thumbnailElement, newSrc) {
+            const container = thumbnailElement.closest('.product-detail-gallery');
+            if (!container) return;
+            const mainImg = container.querySelector('#mainProductImage');
+            if (mainImg) mainImg.src = newSrc;
+            const allThumbs = container.querySelectorAll('.thumb-img');
+            allThumbs.forEach(t => t.style.border = '2px solid transparent');
+            thumbnailElement.style.border = '2px solid var(--accent)';
+        }
+
+        function renderProductDetail(productId) {
+            const p = products.find(pr => pr.id == productId);
+            if (!p) { navigate('home'); return; }
+            const pageEl = document.getElementById('page-product-detail');
+            const isLiked = STATE.wishlist.includes(p.id);
+            const stockClass = p.stock > 10 ? 'stock-in' : p.stock > 0 ? 'stock-low' : 'stock-out';
+            const stockText = p.stock > 10 ? 'In Stock' : p.stock > 0 ? `Only ${p.stock} left` : 'Out of Stock';
+            const displayPrice = p.discountPrice || p.price;
+            const related = products.filter(r => r.category === p.category && r.id != p.id && String(r.status).toLowerCase() === 'active').slice(0,4);
+            const mainPhoto = p.photos || p.id;
+            const mainImgSrc = getProductImage(mainPhoto, 0);
+            pageEl.innerHTML = `
+            <div style="display:flex;gap:28px;flex-wrap:wrap;padding:18px 0;">
+              <div class="product-detail-gallery" style="flex:1;min-width:270px;display:flex;flex-direction:column;gap:10px;align-items:center;">
+                <div style="width:100%;max-width:380px;aspect-ratio:1;background:#fafaf8;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);">
+                  <img id="mainProductImage" src="${mainImgSrc}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+                <div style="display:flex;gap:6px;">
+                  ${[0,1,2].map(i => {
+                      const thumbSrc = getProductImage(mainPhoto, i);
+                      const isFirst = i === 0;
+                      return `<img src="${thumbSrc}" class="thumb-img" onclick="changeMainImage(this, '${thumbSrc}')" 
+                        style="width:48px;height:48px;border-radius:var(--radius-sm);object-fit:cover;cursor:pointer;border:2px solid ${isFirst ? 'var(--accent)' : 'transparent'};">`;
+                  }).join('')}
+                </div>
+              </div>
+              <div style="flex:1;min-width:270px;display:flex;flex-direction:column;gap:12px;">
+                <span class="category-label">${p.category.toUpperCase()}</span>
+                <h1 style="font-size:1.9rem;">${p.name}</h1>
+                <div class="review-stars">${'★'.repeat(Math.round(Number(p.rating)))}${'☆'.repeat(5-Math.round(Number(p.rating)))} <span style="color:var(--text-light);font-size:0.8rem;">(${p.reviews} reviews)</span></div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:1.5rem;font-weight:700;">${Number(displayPrice).toLocaleString()} DA</span>
+                  ${p.discountPrice?`<span style="text-decoration:line-through;color:var(--text-light);">${Number(p.price).toLocaleString()} DA</span>`:''}
+                </div>
+                <span class="stock ${stockClass}" style="font-weight:600;">${stockText}</span>
+                <p style="color:var(--text-secondary);line-height:1.7;">${p.description}</p>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <label style="font-weight:600;font-size:0.82rem;">Qty:</label>
+                  <button class="btn btn-outline btn-xs" onclick="changeDetailQty(-1)">−</button>
+                  <span id="detailQty" style="font-weight:700;min-width:22px;text-align:center;">1</span>
+                  <button class="btn btn-outline btn-xs" onclick="changeDetailQty(1)">+</button>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <button class="btn btn-primary" ${p.stock==0?'disabled':''} onclick="addToCart(${p.id},parseInt(document.getElementById('detailQty').textContent))">
+                    <i data-lucide="shopping-cart" class="icon-inline"></i> Add to Cart
+                  </button>
+                  <button class="btn btn-outline" onclick="toggleWishlist(${p.id});renderProductDetail(${p.id});">
+                    <i data-lucide="heart" class="icon-inline"></i> ${isLiked?'Saved':'Wishlist'}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:28px;"><h3>Customer Reviews</h3>
+              <div style="margin-top:10px;">
+                <div class="review-item"><span class="reviewer">Sarah M.</span> <span class="review-stars">★★★★★</span><p class="comment">Absolutely stunning! Exceptional quality.</p></div>
+                <div class="review-item"><span class="reviewer">Karim B.</span> <span class="review-stars">★★★★☆</span><p class="comment">Elegant packaging and fast delivery.</p></div>
+              </div>
+            </div>
+            <div class="section-header"><h3>Related Products</h3></div>
+            <div class="product-grid">${related.map(rp=>productCardHTML(rp)).join('')}</div>`;
+            lucide.createIcons();
+        }
+
+        function changeDetailQty(delta) { const el = document.getElementById('detailQty'); if (el) { let v = parseInt(el.textContent) + delta; if (v < 1) v = 1; if (v > 20) v = 20; el.textContent = v; } }
+
+        function addToCart(productId, qty = 1) {
+            const p = products.find(pr => pr.id == productId);
+            if (!p || p.stock <= 0) { showToast('Out of stock.'); return; }
+            const existing = STATE.cart.find(c => c.productId == productId);
+            if (existing) { existing.qty = Math.min(existing.qty + qty, p.stock); }
+            else { STATE.cart.push({ productId, qty: Math.min(qty, p.stock) }); }
+            saveState(); updateCartBadge(); renderCartDrawer();
+            showToast(`"${p.name}" added to cart!`);
+        }
+
+        function removeFromCart(pid) { STATE.cart = STATE.cart.filter(c => c.productId != pid); saveState(); updateCartBadge(); renderCartDrawer(); }
+        function updateCartQty(pid, delta) {
+            const item = STATE.cart.find(c => c.productId == pid); if (!item) return;
+            const p = products.find(pr => pr.id == pid);
+            item.qty += delta; if (item.qty < 1) { removeFromCart(pid); return; }
+            if (p && item.qty > p.stock) item.qty = p.stock;
+            saveState(); updateCartBadge(); renderCartDrawer();
+        }
+        function getCartSubtotal() { return STATE.cart.reduce((t, item) => { const p = products.find(pr => pr.id == item.productId); return t + (p ? (Number(p.discountPrice)||Number(p.price)) * item.qty : 0); }, 0); }
+        function getCartTotal() { return getCartSubtotal(); }
+        function getCartCount() { return STATE.cart.reduce((s, i) => s + i.qty, 0); }
+
+        function updateCartBadge() {
+            const c = getCartCount();
+            const tb = document.getElementById('cartBadgeTop'); if (tb) { tb.textContent = c; tb.style.display = c > 0 ? 'flex' : 'none'; }
+            const mb = document.getElementById('cartBadgeMobile'); if (mb) { mb.textContent = c; mb.style.display = c > 0 ? 'flex' : 'none'; }
+        }
+
+        function toggleCart() {
+            const ov = document.getElementById('cartOverlay'), dr = document.getElementById('cartDrawer');
+            if (dr.classList.contains('open')) { ov.classList.remove('open'); dr.classList.remove('open'); document.body.style.overflow = ''; }
+            else { renderCartDrawer(); ov.classList.add('open'); dr.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        }
+
+        function renderCartDrawer() {
+            const itemsEl = document.getElementById('cartItems');
+            document.getElementById('cartItemCount').textContent = `(${getCartCount()})`;
+            document.getElementById('cartTotal').textContent = getCartTotal().toLocaleString() + ' DA';
+            if (STATE.cart.length === 0) {
+                itemsEl.innerHTML = '<div class="cart-empty"><i data-lucide="shopping-cart" style="width:28px;height:28px;"></i><br>Your cart is empty.</div>';
+                document.getElementById('cartFooter').style.display = 'none';
+            } else {
+                document.getElementById('cartFooter').style.display = 'flex';
+                itemsEl.innerHTML = STATE.cart.map(item => {
+                    const p = products.find(pr => pr.id == item.productId); if (!p) return '';
+                    const dp = p.discountPrice || p.price;
+                    return `
+                <div class="cart-item">
+                  <div class="ci-img"><img src="${getProductImage(p.photos?p.photos:p.id)}" alt="${p.name}"></div>
+                  <div class="ci-info">
+                    <div class="ci-name">${p.name}</div>
+                    <div class="ci-price">${Number(dp).toLocaleString()} DA × ${item.qty}</div>
+                    <div class="ci-qty">
+                      <button onclick="updateCartQty(${item.productId},-1)">−</button>
+                      <span>${item.qty}</span>
+                      <button onclick="updateCartQty(${item.productId},1)">+</button>
+                    </div>
+                  </div>
+                  <button class="ci-remove" onclick="removeFromCart(${item.productId})"><i data-lucide="trash-2"></i></button>
+                </div>`;
+                }).join('');
+            }
+            lucide.createIcons();
+        }
+
+        function toggleWishlist(pid) {
+            const idx = STATE.wishlist.indexOf(pid);
+            if (idx > -1) { STATE.wishlist.splice(idx,1); showToast('Removed from wishlist.'); }
+            else { STATE.wishlist.push(pid); showToast('Added to wishlist!'); }
+            saveState();
+            if (STATE.currentPage === 'wishlist') renderWishlist();
+            if (['home','perfumes','glasses','watches','product-detail'].includes(STATE.currentPage)) renderPage(STATE.currentPage, parseInt(window.location.hash.split('?id=')[1]));
+        }
+
+        function renderWishlist() {
+            const pageEl = document.getElementById('page-wishlist');
+            const wishProducts = products.filter(p => STATE.wishlist.includes(p.id));
+            pageEl.innerHTML = `
+            <div class="section-header"><h2><i data-lucide="heart"></i> Your Wishlist</h2></div>
+            ${wishProducts.length===0?'<p class="text-center" style="color:var(--text-light);padding:40px;">Your wishlist is empty.</p>':
+              `<div class="product-grid">${wishProducts.map(p=>productCardHTML(p)).join('')}</div>`}`;
+            lucide.createIcons();
+        }
+
+        function renderCheckout() {
+            const pageEl = document.getElementById('page-checkout');
+            if (STATE.cart.length === 0) {
+                pageEl.innerHTML = '<div class="section-header"><h2><i data-lucide="package"></i> Checkout</h2></div><p class="text-center" style="padding:40px;color:var(--text-light);">Your cart is empty.</p>';
+                return;
+            }
+            pageEl.innerHTML = `
+            <div class="section-header"><h2><i data-lucide="package"></i> Checkout</h2></div>
+            <form class="checkout-form" id="checkoutForm" onsubmit="submitOrder(event)">
+              <div class="field-group">
+                <div><label>Full Name *</label><input type="text" id="custName" required placeholder="Your full name"></div>
+                <div><label>Phone Number *</label><input type="tel" id="custPhone" required placeholder="0..."></div>
+              </div>
+              <div><label>Delivery Method *</label>
+                <div class="radio-group" id="deliveryMethodGroup">
+                  <label class="radio-option selected" onclick="selectDelivery('cod')"><input type="radio" name="delivery" value="cod" checked> 💵 Cash On Delivery</label>
+                  <label class="radio-option" onclick="selectDelivery('pickup')"><input type="radio" name="delivery" value="pickup"> 🏪 Pick Up From Store</label>
+                </div>
+              </div>
+              <div id="addressSection" class="address-section">
+                <div class="field-group">
+                  <div><label>Wilaya *</label><input type="text" id="custWilaya" placeholder="e.g., Algiers"></div>
+                  <div><label>City *</label><input type="text" id="custCity" placeholder="e.g., Algiers Centre"></div>
+                </div>
+                <div><label>Full Delivery Address *</label><input type="text" id="custAddress" placeholder="Street, building, apartment..."></div>
+              </div>
+              <div id="branchSection" style="display:none;">
+                <label>Select Pickup Branch *</label>
+                <select id="pickupBranch">
+                  <option value="">-- Choose a branch --</option>
+                  ${branches.filter(b=>String(b.status).toLowerCase()==='active').map(b=>`<option value="${b.id}">${b.name} — ${b.localization}</option>`).join('')}
+                </select>
+              </div>
+              <div><label>Order Notes</label><textarea id="orderNotes" placeholder="Optional..."></textarea></div>
+              <div style="background:var(--bg-alt);padding:14px;border-radius:var(--radius-sm);text-align:center;font-weight:700;">
+                Order Total: <span style="font-size:1.2rem;">${getCartTotal().toLocaleString()} DA</span>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;padding:13px;font-size:0.95rem;">
+                <i data-lucide="check-circle" class="icon-inline"></i> Place Order
+              </button>
+            </form>`;
+            lucide.createIcons();
+        }
+
+        function selectDelivery(method) {
+            document.querySelectorAll('#deliveryMethodGroup .radio-option').forEach(el => el.classList.remove('selected'));
+            document.querySelector(`.radio-option:has(input[value="${method}"])`)?.classList.add('selected');
+            document.querySelector(`input[name="delivery"][value="${method}"]`).checked = true;
+            const addr = document.getElementById('addressSection'), br = document.getElementById('branchSection');
+            if (method === 'pickup') {
+                addr.classList.add('disabled'); br.style.display = 'block';
+                ['custAddress','custWilaya','custCity'].forEach(id => document.getElementById(id)?.removeAttribute('required'));
+            } else {
+                addr.classList.remove('disabled'); br.style.display = 'none';
+                ['custAddress','custWilaya','custCity'].forEach(id => document.getElementById(id)?.setAttribute('required',''));
+            }
+        }
+
+        async function submitOrderToSheet(order) {
+    try {
+        const formData = new FormData();
+        formData.append('id', order.id);
+        formData.append('createdAt', order.createdAt);
+        formData.append('time', new Date().toLocaleTimeString('en-US', { hour12: false }));
+        formData.append('fullName', order.fullName);
+        formData.append('phone', order.phone);
+        formData.append('wilaya', order.wilaya);
+        formData.append('city', order.city);
+        formData.append('deliveryAddress', order.deliveryAddress || '');
+        formData.append('deliveryMethod', order.deliveryMethod);
+        formData.append('paymentMethod', order.paymentMethod);
+        formData.append('branchId', order.branchId || '');
+        formData.append('products', JSON.stringify(order.products));
+        formData.append('subtotal', order.subtotal);
+        formData.append('total', order.total);
+        formData.append('status', order.status);
+        formData.append('notes', order.notes || '');
+
+        await fetch(ORDER_WEBAPP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+        });
+    } catch (error) {
+        console.error('Order submission failed:', error);
+    }
+}
+
+        function submitOrder(event) {
+            event.preventDefault();
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const delivery = document.querySelector('input[name="delivery"]:checked')?.value || 'cod';
+            const address = delivery === 'cod' ? document.getElementById('custAddress').value.trim() : null;
+            const wilaya = delivery === 'cod' ? document.getElementById('custWilaya').value.trim() : null;
+            const city = delivery === 'cod' ? document.getElementById('custCity').value.trim() : null;
+            const branchId = delivery === 'pickup' ? parseInt(document.getElementById('pickupBranch').value) : null;
+            if (!name || !phone) { showToast('Please fill name and phone.'); return; }
+            if (delivery === 'cod' && (!address || !wilaya || !city)) { showToast('Please fill all delivery address fields.'); return; }
+            if (delivery === 'pickup' && !branchId) { showToast('Please select a pickup branch.'); return; }
+
+            const order = {
+    id: Date.now(),
+    fullName: name,
+    phone: phone,
+    wilaya: delivery === 'cod' ? wilaya : '',
+    city: delivery === 'cod' ? city : '',
+    deliveryAddress: delivery === 'cod' ? address : '',
+    products: STATE.cart.map(c => { const p = products.find(pr => pr.id == c.productId); return { productId: c.productId, name: p?.name, qty: c.qty, price: p?.discountPrice || p?.price }; }),
+    subtotal: getCartSubtotal(),
+    total: getCartTotal(),
+    paymentMethod: 'cod',
+    deliveryMethod: delivery,
+    branchId: branchId,
+    status: 'pending',
+    notes: document.getElementById('orderNotes')?.value || '',
+    createdAt: new Date().toISOString(),
+};
+
+            STATE.orders.push(order);
+            STATE.customers.push({ id: Date.now(), fullName: name, phone, email: '', createdAt: new Date().toISOString() });
+            STATE.cart.forEach(c => { const p = products.find(pr => pr.id == c.productId); if (p) p.stock = Math.max(0, p.stock - c.qty); });
+            STATE.cart = [];
+            saveState();
+            submitOrderToSheet(order);
+            updateCartBadge(); renderCartDrawer();
+            localStorage.setItem('dmb_last_order_id', order.id);
+            navigate('confirmation');
+            showToast('Order placed successfully!');
+        }
+
+        function renderConfirmation() {
+            const pageEl = document.getElementById('page-confirmation');
+            const orderId = localStorage.getItem('dmb_last_order_id') || 'N/A';
+            const order = STATE.orders.find(o => o.id == orderId);
+            const branch = order?.branchId ? branches.find(b => b.id == order.branchId) : null;
+            pageEl.innerHTML = `
+            <div style="text-align:center;padding:44px 18px;">
+              <i data-lucide="check-circle" style="width:56px;height:56px;color:var(--success);margin-bottom:16px;"></i>
+              <h2>Order Confirmed!</h2>
+              <p>Order #${orderId}</p>
+              ${order?`<div style="background:var(--bg-alt);border-radius:var(--radius);padding:16px;max-width:400px;margin:14px auto;text-align:left;font-size:0.85rem;">
+                <p><strong>Status:</strong> <span class="status-badge status-pending">Pending</span></p>
+                <p><strong>Delivery:</strong> ${order.deliveryMethod==='pickup'?'Pick Up — '+(branch?.name||'Branch '+order.branchId):'Cash On Delivery'}</p>
+                ${order.deliveryAddress?`<p><strong>Address:</strong> ${order.deliveryAddress.address}, ${order.deliveryAddress.city}, ${order.deliveryAddress.wilaya}</p>`:''}
+                <p><strong>Total:</strong> ${Number(order.total).toLocaleString()} DA</p>
+              </div>`:''}
+              <button class="btn btn-primary mt-20" onclick="navigate('home')"><i data-lucide="arrow-left" class="icon-inline"></i> Continue Shopping</button>
+            </div>`;
+            lucide.createIcons();
+        }
+
+        function renderAdmin() {
+            const pageEl = document.getElementById('page-admin');
+            pageEl.innerHTML = `
+            <div class="section-header"><h2><i data-lucide="settings"></i> Admin Dashboard</h2></div>
+            <div class="flex-wrap gap-10" style="margin-bottom:18px;">
+              <button class="btn btn-sm" onclick="switchAdminView('orders')">📋 Orders</button>
+              <button class="btn btn-sm" onclick="switchAdminView('products')">📦 Products</button>
+              <button class="btn btn-sm" onclick="switchAdminView('categories')">🏷️ Categories</button>
+              <button class="btn btn-sm" onclick="switchAdminView('branches')">🏪 Branches</button>
+              <button class="btn btn-sm" onclick="switchAdminView('analytics')">📊 Analytics</button>
+            </div>
+            <div id="adminContent"></div>`;
+            switchAdminView('orders');
+            lucide.createIcons();
+        }
+
+        function switchAdminView(view) {
+            STATE.adminView = view;
+            const container = document.getElementById('adminContent');
+            const buttons = document.querySelectorAll('#page-admin .btn');
+            buttons.forEach((b,i) => { b.classList.remove('btn-primary'); b.classList.add('btn-outline'); });
+            const idx = ['orders','products','categories','branches','analytics'].indexOf(view);
+            if (buttons[idx]) { buttons[idx].classList.remove('btn-outline'); buttons[idx].classList.add('btn-primary'); }
+            let html = '';
+            switch (view) {
+                case 'orders': 
+                    html = `<h3>All Orders (${STATE.orders.length})</h3><div class="admin-table-wrap"><table class="admin-table">
+                <thead><tr><th>ID</th><th>Date</th><th>Customer</th><th>Total</th><th>Delivery</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody>${STATE.orders.map(o=>`
+                  <tr><td>${o.id}</td><td>${new Date(o.createdAt).toLocaleDateString()}</td><td>${o.customerId}</td>
+                  <td>${Number(o.total).toLocaleString()} DA</td><td>${o.deliveryMethod==='pickup'?'Pickup':'COD'}</td>
+                  <td><span class="status-badge status-${o.status}">${o.status}</span></td>
+                  <td><select onchange="updateOrderStatus(${o.id},this.value)" style="padding:3px 6px;border-radius:8px;border:1px solid var(--border);font-size:0.7rem;">
+                    <option value="pending" ${o.status==='pending'?'selected':''}>Pending</option>
+                    <option value="confirmed" ${o.status==='confirmed'?'selected':''}>Confirmed</option>
+                    <option value="ready_for_pickup" ${o.status==='ready_for_pickup'?'selected':''}>Ready for Pickup</option>
+                    <option value="out_for_delivery" ${o.status==='out_for_delivery'?'selected':''}>Out for Delivery</option>
+                    <option value="delivered" ${o.status==='delivered'?'selected':''}>Delivered</option>
+                    <option value="cancelled" ${o.status==='cancelled'?'selected':''}>Cancelled</option>
+                  </select></td></tr>`).join('')||'<tr><td colspan="7" class="text-center">No orders.</td></tr>'}</tbody></table></div>`;
+                    break;
+                case 'products':
+                    html = `<h3>Product Management (${products.length})</h3><p class="text-center" style="color:var(--text-light);">Products are managed via Google Sheets.</p>`;
+                    break;
+                case 'categories':
+                    html = `<h3>Categories</h3><div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>Name</th><th>Status</th></tr></thead><tbody>${categories.map(c=>`<tr><td>${c.id}</td><td>${c.name}</td><td>${c.status}</td></tr>`).join('')}</tbody></table></div>`;
+                    break;
+                case 'branches':
+                    html = `<h3>Branches</h3><div class="branches-grid">${branches.map(b=>`
+                  <div class="branch-card"><i data-lucide="map-pin" class="branch-icon icon-lg"></i><h4>${b.name}</h4><p>${b.localization}</p><p>${b.address}</p><p>📞 ${b.phone}</p><p style="font-size:0.7rem;">${b.workHours}</p></div>`).join('')}</div>`;
+                    break;
+                case 'analytics':
+                    const totalOrders = STATE.orders.length;
+                    const totalRevenue = STATE.orders.filter(o=>o.status!=='cancelled').reduce((s,o)=>s+Number(o.total),0);
+                    const lowStock = products.filter(p=>p.stock<5&&p.stock>0).length;
+                    html = `<h3>Analytics</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;">
+                <div style="background:var(--bg-alt);padding:18px;border-radius:var(--radius);text-align:center;"><h4>${totalOrders}</h4><p>Orders</p></div>
+                <div style="background:var(--bg-alt);padding:18px;border-radius:var(--radius);text-align:center;"><h4>${totalRevenue.toLocaleString()} DA</h4><p>Revenue</p></div>
+                <div style="background:var(--bg-alt);padding:18px;border-radius:var(--radius);text-align:center;"><h4>${products.length}</h4><p>Products</p></div>
+                <div style="background:var(--bg-alt);padding:18px;border-radius:var(--radius);text-align:center;"><h4>${lowStock}</h4><p>Low Stock</p></div></div>`;
+                    break;
+            }
+            container.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        function updateOrderStatus(oid, newStatus) { const o = STATE.orders.find(or=>or.id==oid); if (o) { o.status = newStatus; saveState(); showToast(`Order #${oid} → ${newStatus}`); switchAdminView('orders'); } }
+
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('open'); lucide.createIcons(); }
+
+        function init() {
+            updateCartBadge();
+            renderCartDrawer();
+            document.addEventListener('click', function(e) {
+                const menu = document.getElementById('mobileMenu');
+                const btn = document.getElementById('hamburgerBtn');
+                if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) menu.classList.remove('open');
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
+                    document.getElementById('mobileMenu').classList.remove('open');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#','');
+            const [page, query] = hash.split('?');
+            const params = new URLSearchParams(query||'');
+            navigate(page, params.get('id') ? parseInt(params.get('id')) : null);
+        });
+        init();
+    </script>
+</body>
+</html>
